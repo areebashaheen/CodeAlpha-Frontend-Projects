@@ -40,23 +40,18 @@ Calculator/
 │── script.js
 └── README.md
 
-🚀 How to Run
+ ## 🚀 How to Run
 
 1. Download or clone the repository.
-
-
 2. Open the project folder in VS Code.
+3. Open `index.html` in a browser or run it using Live Server.
 
-
-3. Open index.html in a browser or run it using Live Server.
-
-
-
-📸 Preview
+## 📸 Preview
 
 A responsive and user-friendly calculator with a clean interface and smooth interactions.
 
+## 👩‍💻 Developed By
 
----
+**Areeba Shaheen**
 
-Developed by **Areeba Shaheen** as part of the CodeAlpha Frontend Development Internship.
+Developed as part of the **CodeAlpha Frontend Development Internship**.
