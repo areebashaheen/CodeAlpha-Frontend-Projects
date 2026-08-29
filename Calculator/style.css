@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --canvas: #e6eef2;
+  --canvas-deep: #d8e4e9;
+  --ink: #162738;
+  --ink-soft: #526776;
+  --card: #f7faf9;
+  --card-edge: rgba(22, 39, 56, 0.12);
+  --screen: #12263a;
+  --screen-ink: #f4f7f5;
+  --screen-muted: #8da2ae;
+  --number: #eaf0f0;
+  --number-hover: #f5f8f7;
+  --operator: #cfe2e1;
+  --operator-hover: #dceceb;
+  --utility: #e2e9eb;
+  --utility-hover: #edf2f2;
+  --equals: #df8a67;
+  --equals-hover: #e99b79;
+  --focus: #4f8990;
+  --shadow: rgba(33, 58, 76, 0.18);
+  --shadow-soft: rgba(33, 58, 76, 0.08);
+  --radius-card: 28px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--canvas);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100dvh;
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(
+      rgba(91, 132, 145, 0.065) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(91, 132, 145, 0.065) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      circle at 50% -15%,
+      #f7fbfa 0%,
+      var(--canvas) 56%,
+      var(--canvas-deep) 100%
+    );
+  background-size: 32px 32px, 32px 32px, 100% 100%;
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.page-shell {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+}
+
+.calculator-card {
+  width: min(100%, 420px);
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: var(--radius-card);
+  background: rgba(247, 250, 249, 0.82);
+  box-shadow:
+    0 28px 65px -28px var(--shadow),
+    0 8px 22px -15px var(--shadow-soft),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  animation: card-arrive 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.calculator-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 8px 13px;
+  color: var(--ink-soft);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.topline-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.topline-status::before {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6ba59b;
+  box-shadow: 0 0 0 4px rgba(107, 165, 155, 0.14);
+  content: '';
+}
+
+.display {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  color: var(--screen-ink);
+  background: var(--screen);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 6px 14px rgba(18, 38, 58, 0.13);
+}
+
+.display-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  min-width: 0;
+  padding: 0 19px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.expression-line {
+  min-height: 45px;
+  color: var(--screen-muted);
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(12px, 3vw, 14px);
+  letter-spacing: 0.035em;
+}
+
+.result-line {
+  min-height: 73px;
+  border-top: 1px solid rgba(219, 235, 233, 0.16);
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(29px, 8vw, 39px);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+}
+
+.display-text {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.display.error .result-line {
+  color: #f0b296;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(19px, 5vw, 24px);
+  letter-spacing: -0.02em;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.key {
+  min-height: 67px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  color: var(--ink);
+  background: var(--number);
+  box-shadow:
+    0 3px 0 rgba(79, 108, 117, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  transition:
+    background-color 130ms ease,
+    border-color 130ms ease,
+    transform 130ms ease,
+    box-shadow 130ms ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.key:hover {
+  background: var(--number-hover);
+  border-color: rgba(79, 137, 144, 0.22);
+  transform: translateY(-1px);
+}
+
+.key:active,
+.key.is-key-pressed {
+  box-shadow:
+    0 1px 0 rgba(79, 108, 117, 0.16),
+    inset 0 1px 3px rgba(28, 56, 70, 0.08);
+  transform: translateY(2px);
+}
+
+.key-utility {
+  color: #5b6f79;
+  background: var(--utility);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+.key-utility:hover {
+  background: var(--utility-hover);
+}
+
+.key-operator {
+  color: #28575e;
+  background: var(--operator);
+  font-size: 23px;
+}
+
+.key-operator:hover {
+  background: var(--operator-hover);
+}
+
+.key-equals {
+  grid-column: 4;
+  grid-row: 4 / span 2;
+  color: #fff7f2;
+  background: var(--equals);
+  box-shadow:
+    0 3px 0 rgba(135, 72, 50, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  font-size: 27px;
+}
+
+.key-equals:hover {
+  background: var(--equals-hover);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.key-zero {
+  grid-column: 1 / span 2;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes card-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .page-shell {
+    padding: 18px 12px;
+  }
+
+  .calculator-card {
+    padding: 12px;
+    border-radius: 23px;
+  }
+
+  .calculator-topline {
+    padding: 5px 6px 10px;
+  }
+
+  .keypad {
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .key {
+    min-height: clamp(57px, 15vw, 67px);
+    border-radius: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calculator-card {
+    animation: none;
+  }
+
+  .key {
+    transition: none;
+  }
+}
