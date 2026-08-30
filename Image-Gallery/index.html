@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Image Gallery</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>My Image Gallery</h1>
+        <p>Explore beautiful moments</p>
+    </header>
+
+    <!-- Category Filter Buttons -->
+    <section class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="nature">Nature</button>
+        <button class="filter-btn" data-filter="city">City</button>
+        <button class="filter-btn" data-filter="people">People</button>
+    </section>
+
+    <!-- Image Gallery -->
+    <main class="gallery">
+
+        <!-- Image 1 -->
+        <div class="gallery-item" data-category="nature">
+            <img
+                src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=85"
+                alt="Green forest"
+            >
+            <div class="caption">
+                <h2>Green Forest</h2>
+                <p>Nature</p>
+            </div>
+        </div>
+
+        <!-- Image 2 -->
+        <div class="gallery-item" data-category="city">
+            <img
+                src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=900&q=85"
+                alt="City buildings"
+            >
+            <div class="caption">
+                <h2>Modern City</h2>
+                <p>City</p>
+            </div>
+        </div>
+
+        <!-- Image 3 -->
+        <div class="gallery-item" data-category="people">
+            <img
+                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85"
+                alt="Portrait of a person"
+            >
+            <div class="caption">
+                <h2>Portrait</h2>
+                <p>People</p>
+            </div>
+        </div>
+
+        <!-- Image 4 -->
+        <div class="gallery-item" data-category="nature">
+            <img
+                src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"
+                alt="Desert landscape"
+            >
+            <div class="caption">
+                <h2>Desert View</h2>
+                <p>Nature</p>
+            </div>
+        </div>
+
+        <!-- Image 5 -->
+        <div class="gallery-item" data-category="city">
+            <img
+                src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=900&q=85"
+                alt="City skyline"
+            >
+            <div class="caption">
+                <h2>City Lights</h2>
+                <p>City</p>
+            </div>
+        </div>
+
+        <!-- Image 6 -->
+        <div class="gallery-item" data-category="people">
+            <img
+                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=85"
+                alt="Friends together"
+            >
+            <div class="caption">
+                <h2>Good Friends</h2>
+                <p>People</p>
+            </div>
+        </div>
+
+        <!-- Image 7 -->
+        <div class="gallery-item" data-category="nature">
+            <img
+                src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85"
+                alt="Mountain view"
+            >
+            <div class="caption">
+                <h2>Mountain Air</h2>
+                <p>Nature</p>
+            </div>
+        </div>
+
+        <!-- Image 8 -->
+        <div class="gallery-item" data-category="city">
+            <img
+                src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=900&q=85"
+                alt="Urban street"
+            >
+            <div class="caption">
+                <h2>Urban Street</h2>
+                <p>City</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Lightbox Popup -->
+    <div class="lightbox" id="lightbox">
+
+        <!-- Close Button -->
+        <button class="close-btn" id="closeBtn">&times;</button>
+
+        <!-- Previous Button -->
+        <button class="navigation prev-btn" id="prevBtn">&#10094;</button>
+
+        <!-- Large Image -->
+        <img id="lightboxImage" src="" alt="Large preview">
+
+        <!-- Next Button -->
+        <button class="navigation next-btn" id="nextBtn">&#10095;</button>
+
+        <!-- Image Counter -->
+        <p id="imageCounter"></p>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>

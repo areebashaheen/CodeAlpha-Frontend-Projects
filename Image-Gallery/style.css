@@ -1,0 +1,366 @@
+/* -----------------------------
+   Basic Reset
+------------------------------ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* -----------------------------
+   Body Styling
+------------------------------ */
+
+body {
+    min-height: 100vh;
+    background: #f4f7f6;
+    color: #222;
+    font-family: "Poppins", sans-serif;
+}
+
+/* -----------------------------
+   Header
+------------------------------ */
+
+.header {
+    padding: 60px 20px 35px;
+    text-align: center;
+}
+
+.header h1 {
+    margin-bottom: 10px;
+    color: #1d3557;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.header p {
+    color: #777;
+    font-size: 1rem;
+}
+
+/* -----------------------------
+   Filter Buttons
+------------------------------ */
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 35px;
+    padding: 0 20px;
+}
+
+.filter-btn {
+    padding: 10px 22px;
+    color: #1d3557;
+    background: white;
+    border: 2px solid #1d3557;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    color: white;
+    background: #1d3557;
+}
+
+/* -----------------------------
+   Masonry Gallery
+------------------------------ */
+
+.gallery {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+
+    /*
+      CSS columns create a Pinterest-style
+      masonry layout.
+    */
+    columns: 4 220px;
+    column-gap: 18px;
+}
+
+/* -----------------------------
+   Individual Gallery Item
+------------------------------ */
+
+.gallery-item {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 18px;
+    overflow: hidden;
+    background: white;
+    border-radius: 12px;
+    cursor: pointer;
+    break-inside: avoid;
+}
+
+/* Hidden items are used by category filter */
+.gallery-item.hide {
+    display: none;
+}
+
+/* Gallery images */
+.gallery-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* Image zoom effect */
+.gallery-item:hover img {
+    filter: brightness(65%);
+    transform: scale(1.1);
+}
+
+/* -----------------------------
+   Caption Overlay
+------------------------------ */
+
+.caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    padding: 25px 18px 18px;
+    color: white;
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.85)
+    );
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Caption appears on hover */
+.gallery-item:hover .caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.caption h2 {
+    margin-bottom: 3px;
+    font-size: 20px;
+}
+
+.caption p {
+    color: #ddd;
+    font-size: 13px;
+}
+
+/* -----------------------------
+   Lightbox
+------------------------------ */
+
+.lightbox {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 70px 80px 50px;
+    background: rgba(0, 0, 0, 0.94);
+}
+
+/* Lightbox becomes visible */
+.lightbox.show {
+    display: flex;
+}
+
+/* Large image inside lightbox */
+.lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 8px;
+    object-fit: contain;
+    animation: zoomIn 0.3s ease;
+}
+
+/* Zoom animation */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* -----------------------------
+   Close Button
+------------------------------ */
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+
+    color: white;
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+    font-size: 45px;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #ff6b6b;
+}
+
+/* -----------------------------
+   Previous and Next Buttons
+------------------------------ */
+
+.navigation {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 50px;
+    height: 50px;
+
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+    font-size: 28px;
+    transition: background 0.3s ease;
+}
+
+.navigation:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.prev-btn {
+    left: 25px;
+}
+
+.next-btn {
+    right: 25px;
+}
+
+/* Image counter */
+#imageCounter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+
+    color: white;
+    transform: translateX(-50%);
+    font-size: 14px;
+}
+
+/* -----------------------------
+   Tablet Responsive Design
+------------------------------ */
+
+@media (max-width: 900px) {
+    .gallery {
+        columns: 3 180px;
+    }
+
+    .lightbox {
+        padding: 60px 60px 45px;
+    }
+
+    .navigation {
+        width: 44px;
+        height: 44px;
+        font-size: 23px;
+    }
+
+    .prev-btn {
+        left: 15px;
+    }
+
+    .next-btn {
+        right: 15px;
+    }
+}
+
+/* -----------------------------
+   Mobile Responsive Design
+------------------------------ */
+
+@media (max-width: 600px) {
+    .header {
+        padding-top: 40px;
+    }
+
+    .gallery {
+        width: 94%;
+        columns: 2 130px;
+        column-gap: 10px;
+    }
+
+    .gallery-item {
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+
+    .caption {
+        padding: 18px 10px 10px;
+    }
+
+    .caption h2 {
+        font-size: 14px;
+    }
+
+    .caption p {
+        font-size: 10px;
+    }
+
+    .lightbox {
+        padding: 70px 35px 50px;
+    }
+
+    .lightbox img {
+        max-width: 100%;
+        max-height: 75vh;
+    }
+
+    .close-btn {
+        top: 15px;
+        right: 20px;
+        font-size: 38px;
+    }
+
+    .navigation {
+        width: 38px;
+        height: 38px;
+        font-size: 19px;
+    }
+
+    .prev-btn {
+        left: 8px;
+    }
+
+    .next-btn {
+        right: 8px;
+    }
+}
